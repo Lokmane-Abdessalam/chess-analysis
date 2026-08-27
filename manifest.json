@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Chess.com to WintrChess PGN Exporter",
+  "version": "2.0",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "https://www.chess.com/*",
+    "https://wintrchess.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.chess.com/game/*",
+        "https://www.chess.com/game/live/*",
+        "https://www.chess.com/analysis/game/*"
+      ],
+      "js": ["chess-script.js"]
+    },
+    {
+      "matches": ["https://wintrchess.com/analysis*"],
+      "js": ["wintr-script.js"]
+    }
+  ]
+}
